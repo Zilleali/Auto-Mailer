@@ -99,21 +99,98 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-auto-mailer.php';
 
 
 
-add_action( 'admin_menu', 'auto_mailer_options_page' );
-function auto_mailer_options_page() {
+add_action('admin_menu', 'auto_mailer_menu');
+
+function auto_mailer_menu() {
     add_menu_page(
-        'automailer',
-        'Auto Mailer',
+        'Auto Mailer', // Page title
+        'Auto Mailer', // Menu title
+        'manage_options', // Capability required to access the menu
+        'auto-mailer-menu', // Menu slug
+        'function_all_email', // Callback function to render the menu page
+        'dashicons-email', // Menu icon
+        20 // Menu position
         
-        'manage_options',
-        plugin_dir_path(__FILE__) . 'admin/index.php',
-        null,
-        plugin_dir_url(__FILE__) . 'assest/image/ico/logo.svg',
-        3
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'All Emails', // Page title
+        'All Emails', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_all_email.php", // Submenu slug
+
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'Add New', // Page title
+        'Add New', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_add_new.php", // Submenu slug
+
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'Email Categories', // Page title
+        'Email Categories', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_email_catagories.php", // Submenu slug
+
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'All Email Logs', // Page title
+        'All Email Logs', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_all_email_logs.php", // Submenu slug
+
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'About Us', // Page title
+        'About Us', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_about_us.php", // Submenu slug
+
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'Lists', // Page title
+        'Lists', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_lists.php", // Submenu slug
+
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'User Stats', // Page title
+        'User Stats', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_user_stats.php", // Submenu slug
+    );
+
+    add_submenu_page(
+        'auto-mailer-menu', // Parent menu slug
+        'Settings', // Page title
+        'Settings', // Menu title
+        'manage_options', // Capability required to access the submenu
+        plugin_dir_path(__FILE__)."admin/function_setting.php" // Callback function to render the submenu page
     );
 }
 
 
+
+
+// function auto_mailer_submenu_page() {
+//     // Code to render the submenu page HTML
+//     echo '<h1>Auto Mailer Submenu Page</h1>';
+// }
 
 
 
